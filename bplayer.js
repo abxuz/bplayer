@@ -200,6 +200,7 @@ class BPlayer {
     }
 
     _updateAudioState() {
+        if (!this.audio.duration) return;
         let hideHour = this.audio.duration < 3600;
         this.curTime.textContent = this._formatSeconds(this.audio.currentTime, hideHour)
         let restTime = this.audio.duration - this.audio.currentTime;
