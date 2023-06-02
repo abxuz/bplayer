@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Player Demo</title>
+    <link rel="stylesheet" href="bplayer.css">
+    <script type="text/javascript" src="bplayer.js"></script>
+</head>
+
+<body>
+    <style>
+        #player {
+            width: 400px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let e = document.querySelector('#player')
+            let opt = {
+                loop: false,
+                hideTitle: false,
+                hideIndex: true,
+                playlist: [{
+                    title: '没人在乎你',
+                    src: 'https://doubi.fun/wp-content/uploads/2023/04/反光镜乐队-没人在乎你.mp3'
+                }]
+            }
+            new BPlayer(opt).mount(e, false)
+        })
+    </script>
+    <div id="player"></div>
+</body>
+
+</html>
