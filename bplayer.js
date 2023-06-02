@@ -200,12 +200,11 @@ class BPlayer {
     }
 
     _updateAudioState() {
-        if (!this.audio.duration) return;
         let hideHour = this.audio.duration < 3600;
         this.curTime.textContent = this._formatSeconds(this.audio.currentTime, hideHour)
         let restTime = this.audio.duration - this.audio.currentTime;
         this.restTime.textContent = '-' + this._formatSeconds(restTime, hideHour)
-        let progress = parseInt(this.audio.currentTime * 100 / this.audio.duration)
+        let progress = this.audio.duration ? parseInt(this.audio.currentTime * 100 / this.audio.duration) : 0;
         this._setProgress(progress)
         if (this.audio.paused) {
             this.playBtn.style.display = ''
