@@ -50,6 +50,7 @@ class BPlayer {
 
         this.pauseBtn = this._d('i', 'btn', this.control)
         this.pauseBtn.classList.add('b-player-icon', 'b-player-icon-pause')
+        this.pauseBtn.style.display = 'none'
         this.pauseBtn.addEventListener('click', e => {
             e.preventDefault()
             e.stopPropagation()
