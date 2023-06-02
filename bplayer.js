@@ -66,7 +66,7 @@ class BPlayer {
 
         this.audio = this._d('audio', null, this.container)
         this.audio.style.display = 'none'
-        for (let evtName of ['timeupdate', 'loadedmetadata', 'play', 'pause', 'abort', 'error', 'seeked', 'stalled', 'suspend']) {
+        for (let evtName of ['timeupdate', 'loadedmetadata', 'play', 'pause', 'abort', 'error', 'seeked', 'stalled', 'suspend', 'canplay']) {
             this.audio.addEventListener(evtName, e => {
                 this._updateAudioState()
             })
@@ -77,7 +77,6 @@ class BPlayer {
         })
 
         this._initProgress()
-        this._updateAudioState()
         this.load(0, false)
     }
 
@@ -121,6 +120,9 @@ class BPlayer {
             this.audio.addEventListener('canplay', canplayCallback)
         }
         this.audio.src = song.src
+        if (play) {
+            this.play()
+        }
     }
 
     play() {
@@ -200,11 +202,11 @@ class BPlayer {
     }
 
     _updateAudioState() {
-        let hideHour = this.audio.duration < 3600;
+        let hideHour = !(this.audio.duration >= 3600);
         this.curTime.textContent = this._formatSeconds(this.audio.currentTime, hideHour)
-        let restTime = this.audio.duration - this.audio.currentTime;
+        let restTime = this.audio.duration > 0 ? this.audio.duration - this.audio.currentTime : 0;
         this.restTime.textContent = '-' + this._formatSeconds(restTime, hideHour)
-        let progress = this.audio.duration ? parseInt(this.audio.currentTime * 100 / this.audio.duration) : 0;
+        let progress = this.audio.duration > 0 ? parseInt(this.audio.currentTime * 100 / this.audio.duration) : 0;
         this._setProgress(progress)
         if (this.audio.paused) {
             this.playBtn.style.display = ''
