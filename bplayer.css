@@ -64,6 +64,7 @@
     min-width: 1px;
     max-width: 2px;
     background-color: #747474;
+    pointer-events: none;
 }
 
 .b-player-container .b-player-info .b-player-current-time,

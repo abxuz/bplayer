@@ -12,7 +12,6 @@ class BPlayer {
         this.info = this._d('div', 'info', this.container)
 
         this.curTime = this._d('span', 'current-time', this.info)
-        this.curTime.style.pointerEvents = 'none'
 
         this.progress = this._d('div', 'progress', this.info)
         this.progress.addEventListener('click', e => {
@@ -28,7 +27,6 @@ class BPlayer {
         })
 
         this.restTime = this._d('span', 'rest-time', this.info)
-        this.restTime.style.pointerEvents = 'none'
 
         this.control = this._d('div', 'control', this.container)
 
@@ -172,7 +170,6 @@ class BPlayer {
         this.progressWaves = []
         for (let i = 0; i < 100; i++) {
             let wave = this._d('div', 'progress-wave', this.progress)
-            wave.style.pointerEvents = 'none'
             this.progressWaves.push(wave)
         }
     }
